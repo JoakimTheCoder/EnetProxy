@@ -4,7 +4,7 @@
 * /proxy (Shows proxy commands)
 * /dropwl [amount]
 * /dropdl [amount]
-* /dropbgl[amount]
+* /dropbgl [amount]
 * /wrenchset [pull/kick/ban] (Change wrench mode)
 * /wm (Enable/Disable Wrench Mode)
 * /tp [name] (Teleport To Target Player)
