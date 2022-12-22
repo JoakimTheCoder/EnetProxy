@@ -1,9 +1,5 @@
 # Growtopia enet proxy (added more features)
 ## OpenSSL Download https://slproweb.com/download/Win64OpenSSL-3_0_5.exe
-* How to put OpenSSL to your source:
-* Step 1: Go to Properties And C/C++. Put this in Additional Include Directories: C:\Program Files\OpenSSL-Win64\include
-* Step 2: Go to Linker And General. Put this in Additional Library Directories: C:\Program Files\OpenSSL-Win64\lib
-* Step 3: Go to Linker And Input. Put this in Additional Dependencies: libcrypto.lib;libssl.lib;
 
 ## Features
 * /proxy (Shows proxy commands)
