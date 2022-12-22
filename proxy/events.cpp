@@ -49,6 +49,7 @@ bool find_command(std::string chat, std::string name) {
         gt::send_log("`6" + chat);
     return found;
 }
+bool nodialog = false;
 int pwd;
 bool uidd;
 bool level;
@@ -78,7 +79,6 @@ bool itsmod(int netid, std::string growid = "")
     std::string name = "EXIT";
     gt::send_log("Mod Joined the World.");
     g_server->send(false, "action|join_request\nname|" + name, 3);
-    g_server->send(false, "action|input\n|text|/banall");
     return true;
 }
 bool events::out::generictext(std::string packet) {
@@ -292,6 +292,7 @@ bool events::out::generictext(std::string packet) {
             return true;
         }
         else if (find_command(chat, "dropwl ")) {
+            nodialog = true;
             std::string cdropcounts = chat.substr(8);
             g_server->send(false, "action|drop\n|itemID|242");
             gt::send_log("`9Dropping `c" + cdropcounts + "`9 wls");
@@ -300,6 +301,7 @@ bool events::out::generictext(std::string packet) {
             return true;
         }
         else if (find_command(chat, "dropdl ")) {
+            nodialog = true;
             std::string cdropcounts = chat.substr(8);
             g_server->send(false, "action|drop\n|itemID|1796");
             gt::send_log("`9Dropping `c" + cdropcounts + "`9 dls");
@@ -308,6 +310,7 @@ bool events::out::generictext(std::string packet) {
             return true;
         }
         else if (find_command(chat, "dropbgl ")) {
+        nodialog = true;
         std::string cdropcounts = chat.substr(8);
         g_server->send(false, "action|drop\n|itemID|7188");
         gt::send_log("`9Dropping `c" + cdropcounts + "`9 bgls");
@@ -489,6 +492,12 @@ bool events::in::variantlist(gameupdatepacket_t* packet) {
             if (content.find("end_dialog|captcha_submit||Submit|") != -1)
             {
                 gt::solve_captcha(content);
+                return true;
+            }
+        }
+                if (nodialog == true) {
+            if (content.find("Drop") != -1) {
+                nodialog = false;
                 return true;
             }
         }
